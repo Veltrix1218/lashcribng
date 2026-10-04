@@ -1,0 +1,13 @@
+## Business
+
+- Name: Lash Crib Ng
+- Category: Beauty salon
+- Address: 27 Irewole Street, Opebi, Ikeja, Lagos, Nigeria
+- Hours: 9:00 AM–6:00 PM daily
+- Phone / WhatsApp: +234 815 480 1762
+- Email: lashcribng@gmail.com
+- Website: https://lashcribng.vercel.app/
+## Accuracy Rules
+
+- Do not invent an owner name for Lash Crib Ng.
+- Marvo Tech Lab is the developer of the website, not the owner of Lash Crib Ng.
