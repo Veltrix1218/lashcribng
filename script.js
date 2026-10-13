@@ -189,3 +189,63 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+const bookingModal = document.getElementById("bookingModal");
+const bookingFrame = document.getElementById("setmoreBookingFrame");
+
+const bookingURL = "https://lashcribng.setmore.com?embed=true&instant=true";
+
+let previousFocus = null;
+
+function openBookingPopup() {
+  previousFocus = document.activeElement;
+
+  // Load the booking page when the popup opens.
+  if (bookingFrame.src === "about:blank") {
+    bookingFrame.src = bookingURL;
+  }
+
+  bookingModal.classList.add("is-open");
+  bookingModal.setAttribute("aria-hidden", "false");
+
+  document.body.classList.add("booking-modal-open");
+
+  bookingModal.querySelector(".booking-close").focus();
+}
+
+function closeBookingPopup() {
+  bookingModal.classList.remove("is-open");
+  bookingModal.setAttribute("aria-hidden", "true");
+
+  document.body.classList.remove("booking-modal-open");
+
+  if (previousFocus) {
+    previousFocus.focus();
+  }
+}
+
+// Open the popup from any element marked for booking.
+document.addEventListener("click", function (event) {
+  const bookingButton = event.target.closest("[data-booking-open]");
+
+  if (bookingButton) {
+    event.preventDefault();
+    openBookingPopup();
+  }
+});
+
+// Close from the close button or backdrop.
+bookingModal.addEventListener("click", function (event) {
+  if (event.target.closest("[data-booking-close]")) {
+    closeBookingPopup();
+  }
+});
+
+// Close with Escape.
+document.addEventListener("keydown", function (event) {
+  if (
+    event.key === "Escape" &&
+    bookingModal.classList.contains("is-open")
+  ) {
+    closeBookingPopup();
+  }
+});
