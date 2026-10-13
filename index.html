@@ -226,7 +226,7 @@
                     <h1>Where Precision <span>Beauty</span> &amp; Confidence Come Together</h1>
                     <p>Premium lashes, brows, nails and beauty services crafted with precision, care and attention to every detail.</p>
                     <div class="hero-buttons">
-                        <a href="#quote"><button class="primary-btn">Book An Appointment <i class="fa-solid fa-file-invoice-dollar"></i></button></a>
+                        <a href="https://lashcribng.setmore.com" data-booking-open><button class="primary-btn">Book An Appointment <i class="fa-solid fa-file-invoice-dollar"></i></button></a>
                         <a href="#gallery"><button class="secondary-btn">Explore Our Gallery<i class="fa-solid fa-images"></i></button></a>
                     </div>
                 </div>
@@ -424,7 +424,7 @@ decoding="async">
                         </article>
                     </div>
                     <div class="about-button">
-                        <a href="#quote"><button class="primary-btn">Book An Appointment <i class="fa-solid fa-file-invoice-dollar"></i></button></a>
+                        <a href="https://lashcribng.setmore.com" data-booking-open><button class="primary-btn">Book An Appointment <i class="fa-solid fa-file-invoice-dollar"></i></button></a>
                         <a href="#gallery"><button class="secondary-btn"> View Our Work <i class="fa-solid fa-images"></i></button></a>
                     </div>
                 </div>
@@ -528,7 +528,7 @@ decoding="async">
                 </article>
                 </div>
                 <div class="gallery-action">
-                    <a href="#quote"><button class="primary-btn">Book An Appointment <i class="fa-solid fa-arrow-right"></i></button></a>
+                    <a href="#quote"><button class="primary-btn">Request A Quote <i class="fa-solid fa-arrow-right"></i></button></a>
                 </div>
             </div>
         </section>
@@ -972,6 +972,313 @@ decoding="async">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
+     <!-- Floating booking button -->
+<button
+  type="button"
+  class="floating-book-btn"
+  data-booking-open
+>
+  Book Appointment
+</button>
+
+<!-- Booking popup -->
+<div
+  class="booking-modal"
+  id="bookingModal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Book an appointment"
+>
+  <div class="booking-overlay" data-booking-close></div>
+
+  <div class="booking-modal-content">
+    <div class="booking-modal-header">
+      <div>
+        <span class="booking-eyebrow">YOUR NEXT APPOINTMENT</span>
+        <h2>Book Your Visit</h2>
+      </div>
+
+      <button
+        type="button"
+        class="booking-close"
+        data-booking-close
+        aria-label="Close booking window"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="booking-frame-container">
+      <iframe
+        id="setmoreBookingFrame"
+        title="Setmore appointment booking"
+        src="about:blank"
+        loading="lazy"
+        allow="web-share; payment"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
+
+    <p class="booking-fallback">
+      Having trouble booking?
+      <a
+        href="https://lashcribng.setmore.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open the booking page
+      </a>
+    </p>
+  </div>
+</div>
+
+<style>
+    /* Floating booking button */
+.floating-book-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1000;
+
+  padding: 15px 23px;
+  border: none;
+  border-radius: 50px;
+
+  background: #111827;
+  color: #ffffff;
+
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease,
+              background 0.25s ease;
+}
+
+.floating-book-btn:hover {
+  background: #303b50;
+  transform: translateY(-3px);
+}
+
+/* Popup wrapper */
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+  visibility: hidden;
+  opacity: 0;
+
+  transition: opacity 0.25s ease,
+              visibility 0.25s ease;
+}
+
+.booking-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Dark background */
+.booking-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 22, 0.76);
+  backdrop-filter: blur(6px);
+}
+
+/* Popup card */
+.booking-modal-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(100%, 760px);
+  height: min(85vh, 760px);
+
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ffffff;
+
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.3);
+
+  transform: translateY(15px);
+  transition: transform 0.25s ease;
+}
+
+.booking-modal.is-open .booking-modal-content {
+  transform: translateY(0);
+}
+
+/* Popup heading */
+.booking-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.booking-eyebrow {
+  color: #777f8d;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.booking-modal-header h2 {
+  margin: 5px 0 0;
+  color: #111827;
+  font-size: 23px;
+}
+
+.booking-close {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 50%;
+  background: #f1f3f6;
+  color: #111827;
+
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Booking iframe */
+.booking-frame-container {
+  flex: 1;
+  min-height: 0;
+}
+
+.booking-frame-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Fallback link */
+.booking-fallback {
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: #555f70;
+  border-top: 1px solid #e5e7eb;
+}
+
+.booking-fallback a {
+  color: #245bdb;
+  font-weight: 600;
+}
+
+/* Prevent background scrolling */
+body.booking-modal-open {
+  overflow: hidden;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  .booking-modal {
+    padding: 0;
+  }
+
+  .booking-modal-content {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .booking-modal-header {
+    padding: 17px;
+  }
+
+  .booking-modal-header h2 {
+    font-size: 20px;
+  }
+
+  .floating-book-btn {
+    right: 10px;
+    bottom: 10px;
+    padding: 13px 19px;
+  }
+}
+</style>
+<script>
+    const bookingModal = document.getElementById("bookingModal");
+const bookingFrame = document.getElementById("setmoreBookingFrame");
+
+const bookingURL = "https://lashcribng.setmore.com";
+
+let previousFocus = null;
+
+function openBookingPopup() {
+  previousFocus = document.activeElement;
+
+  // Load the booking page when the popup opens.
+  if (bookingFrame.src === "about:blank") {
+    bookingFrame.src = bookingURL;
+  }
+
+  bookingModal.classList.add("is-open");
+  bookingModal.setAttribute("aria-hidden", "false");
+
+  document.body.classList.add("booking-modal-open");
+
+  bookingModal.querySelector(".booking-close").focus();
+}
+
+function closeBookingPopup() {
+  bookingModal.classList.remove("is-open");
+  bookingModal.setAttribute("aria-hidden", "true");
+
+  document.body.classList.remove("booking-modal-open");
+
+  if (previousFocus) {
+    previousFocus.focus();
+  }
+}
+
+// Open the popup from any element marked for booking.
+document.addEventListener("click", function (event) {
+  const bookingButton = event.target.closest("[data-booking-open]");
+
+  if (bookingButton) {
+    event.preventDefault();
+    openBookingPopup();
+  }
+});
+
+// Close from the close button or backdrop.
+bookingModal.addEventListener("click", function (event) {
+  if (event.target.closest("[data-booking-close]")) {
+    closeBookingPopup();
+  }
+});
+
+// Close with Escape.
+document.addEventListener("keydown", function (event) {
+  if (
+    event.key === "Escape" &&
+    bookingModal.classList.contains("is-open")
+  ) {
+    closeBookingPopup();
+  }
+});
+    </script>
         <script src="script.js"></script>
 </body>
 </html>
